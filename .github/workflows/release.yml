@@ -24,7 +24,7 @@ jobs:
       id: changeset
       uses: changesets/action@v1.4.9
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
       with:
         title: New Release
         commit: Create new release
