@@ -28,7 +28,7 @@ jobs:
       with:
         title: New Release
         commit: Create new release
-        publish: changeset publish
+        publish: pnpm changeset publish
 
     - name: Build docker release matrix
       if: steps.changeset.outputs.published
