@@ -39,3 +39,12 @@ jobs:
       run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     - name: Success
       run: exit 0
+
+  release:
+    name: Release
+    if: github.event_name == 'push'
+    needs: [success]
+    uses: ./.github/workflows/release.yml
+    permissions:
+      contents: read
+      packages: write
