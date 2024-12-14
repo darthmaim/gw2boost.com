@@ -1,0 +1,19 @@
+{
+  "name": "@gw2boost/database",
+  "private": true,
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:studio": "prisma studio",
+    "build": "tsc"
+  },
+  "main": "./lib/index.js",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@prisma/client": "6.0.1"
+  },
+  "devDependencies": {
+    "prisma": "6.0.1",
+    "typescript": "5.7.2"
+  }
+}

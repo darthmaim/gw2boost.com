@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev:web": "turbo run dev --filter=web",
+    "prisma:studio": "pnpm run --filter @gw2boost/database prisma:studio",
     "build": "turbo run build",
     "lint": "turbo run lint --continue"
   },
