@@ -11,3 +11,14 @@ services:
       - .docker/database-pg17:/var/lib/postgresql/data
     ports:
       - 54328:5432
+
+  database-migration:
+    image: ghcr.io/darthmaim/gw2boost.com/database-migration:${IMAGE_VERSION:-latest}
+    build:
+      context: .
+      dockerfile: apps/database-migration/Dockerfile
+    restart: on-failure:5
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=postgresql://gw2boost:gw2boost@database:5432/gw2boost?schema=public
