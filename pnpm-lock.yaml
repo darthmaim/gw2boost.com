@@ -17,6 +17,9 @@ importers:
       '@gw2boost/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@gw2me/client':
+        specifier: 0.5.0
+        version: 0.5.0
       next:
         specifier: 15.1.0
         version: 15.1.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -100,6 +103,9 @@ packages:
   '@eslint/plugin-kit@0.2.4':
     resolution: {integrity: sha512-zSkKow6H5Kdm0ZUQUB2kV5JIXqoG0+uH5YADhaEHswm664N9Db8dXSi0nMJpacpMf+MyyglF1vnZohpEg5yUtg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@gw2me/client@0.5.0':
+    resolution: {integrity: sha512-AMWcVcN/ZHhTBJFNNWkucvC2xuBcRFBabXaPuUUoZvuZ2TiQGWEHVufCit5kJOwO/DU7awJe+0mZTcGaYtg7IQ==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1526,6 +1532,8 @@ snapshots:
   '@eslint/plugin-kit@0.2.4':
     dependencies:
       levn: 0.4.1
+
+  '@gw2me/client@0.5.0': {}
 
   '@humanfs/core@0.19.1': {}
 
