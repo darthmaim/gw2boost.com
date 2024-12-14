@@ -1,12 +1,19 @@
 {
   "name": "gw2boost.com",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "dev:web": "turbo run dev --filter=web",
+    "build": "turbo run build",
+    "lint": "turbo run lint --continue"
+  },
   "engines": {
     "node": "20 || >=22",
     "npm": "please-use-pnpm",
     "yarn": "please-use-pnpm",
     "pnpm": "9.15.0"
+  },
+  "devDependencies": {
+    "turbo": "2.3.3"
   },
   "packageManager": "pnpm@9.15.0"
 }
