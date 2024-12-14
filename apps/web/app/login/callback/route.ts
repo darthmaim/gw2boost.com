@@ -1,10 +1,12 @@
 import { db } from "@/lib/db";
-import { gw2me, gw2meRedirectUrl } from "@/lib/gw2me";
+import { getGw2MeClient, getGw2meRedirectUrl } from "@/lib/gw2me";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
+  const gw2me = getGw2MeClient();
+
   // parse code/state from url
   const authResponse = gw2me.parseAuthorizationResponseSearchParams(request.nextUrl.searchParams);
 
@@ -26,7 +28,7 @@ export async function GET(request: NextRequest) {
   // get token
   const token = await gw2me.getAccessToken({
     code: authResponse.code,
-    redirect_uri: gw2meRedirectUrl,
+    redirect_uri: getGw2meRedirectUrl(),
     code_verifier: authRequest.code_verifier,
   });
 

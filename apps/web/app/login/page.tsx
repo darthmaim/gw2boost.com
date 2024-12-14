@@ -1,5 +1,5 @@
 import { db } from '@/lib/db';
-import { gw2me, gw2meRedirectUrl } from '@/lib/gw2me';
+import { getGw2meRedirectUrl, getGw2MeClient } from '@/lib/gw2me';
 import { Scope } from '@gw2me/client';
 import { generatePKCEPair } from '@gw2me/client/pkce';
 import { redirect } from 'next/navigation';
@@ -26,8 +26,8 @@ async function login() {
   });
 
   // create auth url
-  const authUrl = gw2me.getAuthorizationUrl({
-    redirect_uri: gw2meRedirectUrl,
+  const authUrl = getGw2MeClient().getAuthorizationUrl({
+    redirect_uri: getGw2meRedirectUrl(),
     scopes: [Scope.Identify, Scope.Email],
     ...pkce.challenge,
     state: authRequest.id,

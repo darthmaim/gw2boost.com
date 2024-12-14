@@ -1,0 +1,39 @@
+name: Setup Node.js
+description: Composite task to set up the Node.js environment used in CI
+
+inputs:
+  node-version:
+    description: Version of Node.js
+    required: true
+    default: '22'
+  cache-key:
+    description: The cache key used for turbo caches or 'false' to disable caching
+    required: false
+    default: 'false'
+
+runs:
+  using: composite
+  steps:
+    # https://github.com/actions/virtual-environments/issues/1187
+    - name: tune linux network
+      shell: bash
+      run: sudo ethtool -K eth0 tx off rx off
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: pnpm
+        registry-url: 'https://registry.npmjs.org'
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
+    - name: Cache turbo
+      if: inputs.cache-key != 'false'
+      uses: actions/cache@v4
+      with:
+        path: ./.turbo/cache
+        key: turbo-cache-${{ runner.os }}-${{ inputs.cache-key }}-${{ github.sha }}
+        restore-keys: |
+          turbo-cache-${{ runner.os }}-${{ inputs.cache-key }}-
+          turbo-cache-${{ runner.os }}-
