@@ -37,3 +37,23 @@ jobs:
           *.platform=linux/amd64,linux/arm64
           *.cache-from=type=gha,scope=build-${{ matrix.target }}
           *.cache-to=type=gha,scope=build-${{ matrix.target }},mode=max
+
+  test-compose:
+    name: "Test: docker compose"
+    runs-on: ubuntu-24.04
+    needs: build-docker
+    steps:
+    - uses: actions/checkout@v4
+    - name: Pull images
+      run: docker compose pull
+    - run: docker images
+    - name: Start docker compose
+      run: docker compose up -d
+    - name: Wait 15s
+      run: sleep 15
+    - run: docker compose ps -a
+    - run: docker compose logs
+    - name: Verify docker containers are running
+      run: docker inspect --format "{{.ID}} {{.Name}} {{.State.Status}} {{.RestartCount}}" $(docker compose ps -aq) | node .github/actions/docker-compose-status.js
+    - name: Stop docker compose
+      run: docker compose down
