@@ -1,4 +1,16 @@
 services:
+  web:
+    image: ghcr.io/darthmaim/gw2boost.com/web:${IMAGE_VERSION:-latest}
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql://gw2boost:gw2boost@database:5432/gw2boost?schema=public
+      - BASE_URL=http://localhost:3000
+    ports:
+      - 3000:3000
+
   database:
     image: timescale/timescaledb:2.17.2-pg17
     restart: unless-stopped
