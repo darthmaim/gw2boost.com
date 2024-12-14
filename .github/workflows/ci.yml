@@ -50,3 +50,4 @@ jobs:
       id-token: write
       pull-requests: write
       packages: write
+    secrets: inherit
