@@ -17,8 +17,6 @@ jobs:
         node: [ 20, 22 ]
     steps:
     - uses: actions/checkout@v4
-      with:
-        submodules: true
     - name: Setup Node.js env
       uses: ./.github/actions/setup-node-env
       with:
