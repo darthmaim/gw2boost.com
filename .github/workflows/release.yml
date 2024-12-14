@@ -9,6 +9,10 @@ jobs:
     outputs:
       published: ${{ steps.changeset.outputs.published }}
       dockerMatrix: ${{ steps.docker-matrix.outputs.dockerMatrix }}
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
     steps:
     - uses: actions/checkout@v4
     - name: Setup Node.js env
