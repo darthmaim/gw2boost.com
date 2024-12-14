@@ -6,6 +6,9 @@ node_modules/
 # turbo
 .turbo/
 
+# docker
+.docker/
+
 # misc
 .DS_Store
 *.pem

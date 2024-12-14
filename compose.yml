@@ -1,0 +1,13 @@
+services:
+  database:
+    image: timescale/timescaledb:2.17.2-pg17
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=gw2boost
+      - POSTGRES_PASSWORD=gw2boost
+      - POSTGRES_DB=gw2boost
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - .docker/database-pg17:/var/lib/postgresql/data
+    ports:
+      - 54328:5432
