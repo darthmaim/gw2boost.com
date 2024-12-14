@@ -30,17 +30,19 @@ jobs:
         commit: Create new release
 
     - name: Build docker release matrix
+      if: steps.changeset.outputs.published
       id: docker-matrix
       run: |
-        dockerMatrix=$(jq -cr '{ include: [.[] | select(.name as $name | ["web", "database-migration"] | index($name))] }' <<< '${{ steps.changeset.outputs.publishedPackages }}')
+        dockerMatrix=$(jq -cr '[.[] | select(.name as $name | ["web", "database-migration"] | index($name))]' <<< '${{ steps.changeset.outputs.publishedPackages }}')
         echo dockerMatrix="${dockerMatrix}" >> $GITHUB_OUTPUT
 
   release-docker:
     name: "Docker: ${{ matrix.name }}"
     needs: [release]
-    if: needs.release.outputs.published
+    if: needs.release.outputs.published && needs.release.outputs.dockerMatrix != '[]'
     strategy:
-      matrix: ${{ fromJson(needs.release.outputs.dockerMatrix) }}
+      matrix:
+        include: ${{ fromJson(needs.release.outputs.dockerMatrix) }}
     runs-on: ubuntu-24.04
     steps:
     - name: Set up Docker Buildx
