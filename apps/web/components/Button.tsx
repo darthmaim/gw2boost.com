@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export type ButtonProps = {
   children: ReactNode,
-  appearance?: 'primary' | 'secondary',
+  appearance?: 'primary' | 'secondary' | 'delete',
 } & (
   | { type: 'link', href: string }
   | { type?: 'button' | 'submit' }
