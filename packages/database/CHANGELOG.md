@@ -1,5 +1,11 @@
 # @gw2boost/database
 
+## 0.3.0
+
+### Minor Changes
+
+- Add projects ([#16](https://github.com/darthmaim/gw2boost.com/pull/16) by [@darthmaim](https://github.com/darthmaim))
+
 ## 0.2.1
 
 ### Patch Changes
