@@ -1,10 +1,17 @@
 import { db } from '@/lib/db';
 import { getGw2meRedirectUrl, getGw2MeClient } from '@/lib/gw2me';
+import { getSession } from '@/lib/session';
 import { Scope } from '@gw2me/client';
 import { generatePKCEPair } from '@gw2me/client/pkce';
 import { redirect } from 'next/navigation';
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const session = await getSession();
+
+  if(session) {
+    redirect('/dashboard');
+  }
+
   return (
     <>
       <form action={login}>

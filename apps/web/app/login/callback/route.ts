@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { type NextRequest } from "next/server";
 
+// TODO: handle errors
 export async function GET(request: NextRequest) {
   const gw2me = getGw2MeClient();
 
@@ -42,6 +43,7 @@ export async function GET(request: NextRequest) {
   // get user
   const user = await db.user.upsert({
     where: { gw2meUserId: identity.user.id },
+    select: { id: true },
     create: {
       gw2meUserId: identity.user.id,
       name: identity.user.name,
@@ -52,13 +54,18 @@ export async function GET(request: NextRequest) {
       name: identity.user.name,
       email: identity.user.email,
       emailVerified: identity.user.emailVerified ?? false,
-    }
+    },
+  });
+
+  // create session
+  const session = await db.session.create({
+    data: { userId: user.id },
+    select: { id: true },
   });
 
   // set session cookie
-  // TODO: set correct session cookie
   const cookieStore = await cookies();
-  cookieStore.set('session', user.id, {
+  cookieStore.set('session', session.id, {
     sameSite: 'none',
     httpOnly: true,
     priority: 'high',
