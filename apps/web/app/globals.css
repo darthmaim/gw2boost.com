@@ -8,6 +8,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
   text-size-adjust: none;
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 * {

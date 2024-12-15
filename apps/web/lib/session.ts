@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { db } from "./db";
 import { Prisma } from "@gw2boost/database";
 import { cache } from "react";
-import { unauthorized } from "next/navigation";
+import { redirect, unauthorized } from "next/navigation";
 
 export const getSessionId = cache(async function getSessionId() {
   const cookieStore = await cookies();
@@ -53,6 +53,15 @@ export async function requireUser() {
   }
 
   return user;
+}
+
+export async function logoutAction() {
+  'use server';
+
+  const cookieStore = await cookies();
+  cookieStore.delete('session');
+
+  redirect('/');
 }
 
 async function getSessionFromDb(sessionId: string) {

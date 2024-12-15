@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import "./variables.css";
 import "./globals.css";
+import styles from './layout.module.css';
+import Link from "next/link";
+import { Suspense } from "react";
+import { UserButton } from "@/components/UserButton";
 
 export default function RootLayout({
   children,
@@ -9,7 +14,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <header className={styles.header}>
+          <Link href="/" className={styles.title}>GW2 Boost</Link>
+          <div className={styles.headerActions}>
+            <Suspense><UserButton/></Suspense>
+          </div>
+        </header>
+        <main className={styles.content}>
+          {children}
+        </main>
       </body>
     </html>
   );

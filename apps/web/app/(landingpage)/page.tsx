@@ -1,5 +1,5 @@
-import Link from "next/link";
 import styles from "./page.module.css";
+import { Button } from "@/components/Button";
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
       <h1>GW2Boost</h1>
       Coming soon...<br/>
 
-      <Link href="/login">Login</Link>
+      <Button type="link" href="/login">Login</Button>
     </div>
   );
 }

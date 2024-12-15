@@ -1,3 +1,4 @@
+import { Button } from '@/components/Button';
 import { db } from '@/lib/db';
 import { getGw2meRedirectUrl, getGw2MeClient } from '@/lib/gw2me';
 import { getSession } from '@/lib/session';
@@ -15,7 +16,7 @@ export default async function LoginPage() {
   return (
     <>
       <form action={login}>
-        <button type="submit">Login with gw2.me</button>
+        <Button type="submit">Login with gw2.me</Button>
       </form>
     </>
   );

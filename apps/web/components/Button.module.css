@@ -1,0 +1,29 @@
+.button {
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 500;
+  padding: 8px 16px;
+  line-height: 20px;
+  border: none;
+  color: var(--button_color);
+  box-shadow: inset 0 0 0 1px var(--button_border);
+  background-color: var(--button_background);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.primary {
+  composes: button;
+
+  --button_color: var(--color-background);
+  --button_background: var(--color-text);
+  --button_border: var(--color-text);
+}
+
+.secondary {
+  composes: button;
+
+  --button_color: var(--color-text);
+  --button_background: var(--color-background-alternate);
+  --button_border: var(--color-border);
+}
