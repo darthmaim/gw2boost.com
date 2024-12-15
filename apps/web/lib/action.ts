@@ -1,5 +1,5 @@
 import { unstable_rethrow as rethrow } from "next/navigation";
-import { z, type ZodSchema } from "zod";
+import { z } from "zod";
 import { type formData } from 'zod-form-data';
 
 type FormDataZodSchema = ReturnType<typeof formData>;
