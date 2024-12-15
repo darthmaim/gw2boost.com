@@ -11,7 +11,6 @@ export type ActionState =
 
 export function createAction<Schema extends FormDataZodSchema>(schema: Schema, action: (data: z.infer<Schema>) => Promise<never | { success: boolean }>) {
   return async (_previousState: ActionState, formData: FormData): Promise<ActionState> => {
-    schema
     const parsed = await schema.safeParseAsync(formData);
 
     if(!parsed.success) {
@@ -20,10 +19,10 @@ export function createAction<Schema extends FormDataZodSchema>(schema: Schema, a
     }
 
     try {
-      return action(parsed);
+      return await action(parsed.data);
     } catch(e) {
       rethrow(e);
-
+      console.log(String(e));
       return { success: false };
     }
   };
