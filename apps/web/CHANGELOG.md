@@ -1,5 +1,17 @@
 # web
 
+## 0.3.0
+
+### Minor Changes
+
+- Allow creating projects ([#16](https://github.com/darthmaim/gw2boost.com/pull/16) by [@darthmaim](https://github.com/darthmaim))
+
+### Patch Changes
+
+- Allow deleting projects ([#16](https://github.com/darthmaim/gw2boost.com/pull/16) by [@darthmaim](https://github.com/darthmaim))
+- Updated internal dependencies:
+  - @gw2boost/database@0.3.0
+
 ## 0.2.2
 
 ### Patch Changes
