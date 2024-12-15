@@ -1,3 +1,4 @@
+import { unstable_rethrow as rethrow } from "next/navigation";
 import { z, type ZodSchema } from "zod";
 import { type formData } from 'zod-form-data';
 
@@ -15,9 +16,15 @@ export function createAction<Schema extends FormDataZodSchema>(schema: Schema, a
 
     if(!parsed.success) {
       console.warn(parsed.error);
-      return { success: false }
+      return { success: false };
     }
 
-    return action(parsed)
+    try {
+      return action(parsed);
+    } catch(e) {
+      rethrow(e);
+
+      return { success: false };
+    }
   };
 }
