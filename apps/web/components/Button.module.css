@@ -27,3 +27,11 @@
   --button_background: var(--color-background-alternate);
   --button_border: var(--color-border);
 }
+
+.delete {
+  composes: button;
+
+  --button_color: var(--color-error);
+  --button_background: var(--color-background);
+  --button_border: var(--color-error);
+}
