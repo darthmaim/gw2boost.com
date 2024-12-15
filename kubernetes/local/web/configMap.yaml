@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+
+metadata:
+  name: web
+
+data:
+  db: postgresql://gw2boost:3cd6047c-e3cf-47a0-bd8e-46ed64c146a5@database-pg17:5432/gw2boost?schema=public
+  url: http://gw2boost.kubernetes.localhost/
+  gw2meClientId: none
+  gw2meClientSecret: missing

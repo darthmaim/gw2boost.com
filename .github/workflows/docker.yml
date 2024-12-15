@@ -57,3 +57,35 @@ jobs:
       run: docker inspect --format "{{.ID}} {{.Name}} {{.State.Status}} {{.RestartCount}}" $(docker compose ps -aq) | node .github/actions/docker-compose-status.js
     - name: Stop docker compose
       run: docker compose down
+
+  test-kubernetes:
+    name: "Test: kubernetes"
+    runs-on: ubuntu-24.04
+    needs: build-docker
+    steps:
+    - uses: actions/checkout@v4
+    - uses: nolar/setup-k3d-k3s@v1
+      with:
+        version: v1.26
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: build temporary kustomization.yaml
+      run: |
+        mkdir -p .temp
+        cat <<EOF > .temp/kustomization.yaml
+        resources:
+        - ../kubernetes/local
+        images:
+        - name: ghcr.io/darthmaim/gw2boost.com/web
+          newTag: ${{ env.IMAGE_VERSION }}
+        - name: ghcr.io/darthmaim/gw2boost.com/database-migration
+          newTag: ${{ env.IMAGE_VERSION }}
+        EOF
+    - run: kubectl kustomize .temp
+    - run: kubectl apply -k .temp
+    - run: kubectl rollout status deployment web database-pg17 -n gw2boost --timeout=120s
+    - run: kubectl get deployment -n gw2boost
+      if: success() || failure()
+    - run: kubectl get job -n gw2boost
+      if: success() || failure()
+    - run: kubectl logs -l app.kubernetes.io/part-of=gw2boost -n gw2boost --all-containers --ignore-errors
+      if: failure() || runner.debug == '1'
