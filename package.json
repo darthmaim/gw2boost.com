@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@changeset-bot/changelog": "0.0.4",
-    "@changesets/cli": "2.27.12",
+    "@changesets/cli": "2.28.0",
     "turbo": "2.4.2"
   },
   "packageManager": "pnpm@9.15.5"
