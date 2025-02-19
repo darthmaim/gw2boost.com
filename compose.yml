@@ -12,7 +12,7 @@ services:
       - 3000:3000
 
   database:
-    image: timescale/timescaledb:2.18.1-pg17
+    image: timescale/timescaledb:2.18.2-pg17
     restart: unless-stopped
     environment:
       - POSTGRES_USER=gw2boost
