@@ -30,8 +30,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/database
       '@gw2me/client':
-        specifier: 0.5.3
-        version: 0.5.3
+        specifier: 0.5.4
+        version: 0.5.4
       next:
         specifier: 15.1.7
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -337,8 +337,8 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@gw2me/client@0.5.3':
-    resolution: {integrity: sha512-QIkatuArwdjlknRrakdOZTApKCsYL2tLh1w3liCeB/9dMuy2+9KcfrCbHrNVAjD/YsHqSyB0ROLyyw5kL6vEcA==}
+  '@gw2me/client@0.5.4':
+    resolution: {integrity: sha512-XxnR+3CkiNZr3MVHIkBTDrQMdy1a+SofZTBZTieYRb5QP+wIfzZ3AtVffD50qmxjIxF1MwE8Jj7eIATIG1/FsA==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2244,7 +2244,7 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@gw2me/client@0.5.3': {}
+  '@gw2me/client@0.5.4': {}
 
   '@humanfs/core@0.19.1': {}
 
