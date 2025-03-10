@@ -22,7 +22,7 @@ jobs:
 
     - name: Create Release Pull Request
       id: changeset
-      uses: changesets/action@v1.4.9
+      uses: changesets/action@v1.4.10
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
       with:
